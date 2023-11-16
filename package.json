@@ -9,7 +9,7 @@
     "dev": "cross-env NODE_ENV=development nodemon --watch 'src/' --exec 'ts-node -r tsconfig-paths/register ./src/app.ts' -e ts",
     "migration:run": "prisma migrate deploy",
     "migration:generate": "npm run load-envs prisma migrate dev",
-    "load-env": "dotenv -e .env",
+    "load-envs": "dotenv -e .env",
     "seed": "prisma db seed",
     "test:load-envs": "dotenv -e .env.test",
     "test:seed": "npm run test:load-envs prisma db seed",

@@ -1,15 +1,13 @@
 import prisma from "@/database/database"
 
 async function postBet(homeTeamScore: number, awayTeamScore: number, amountBet: number, gameId: number, participantId: number) {
-    const newBet = prisma.bet.create({
+    const newBet = prisma.bets.create({
         data: {
-            hometeamscore: homeTeamScore,
-            awayteamscore: awayTeamScore,
-            amountbet: amountBet,
-            gameid: gameId,
-            participantid: participantId,
-            status: "PENDING",
-            amountwon: null
+            homeTeamScore: homeTeamScore,
+            awayTeamScore: awayTeamScore,
+            amountBet: amountBet,
+            gameId: gameId,
+            participantId: participantId
         }
     });
     return newBet;

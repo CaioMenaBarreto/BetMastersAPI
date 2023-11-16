@@ -7,34 +7,40 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model bet {
+model Bets {
   id            Int      @id @default(autoincrement())
-  createdat     DateTime @default(now()) @db.Date
-  updatedat     DateTime @default(now()) @db.Date
-  hometeamscore Int
-  awayteamscore Int
-  amountbet     Int
-  gameid        Int
-  participantid Int
-  status        String   @db.VarChar(20)
-  amountwon     Int?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  homeTeamScore Int
+  awayTeamScore Int
+  amountBet     Int
+  gameId        Int
+  participantId Int
+  status        String   @default("PENDING") @db.VarChar(20)
+  amountWon     Int?
+
+  @@map("bets")
 }
 
-model game {
+model Games {
   id            Int      @id @default(autoincrement())
-  createdat     DateTime @default(now()) @db.Date
-  updatedat     DateTime @default(now()) @db.Date
-  hometeamname  String   @db.VarChar(255)
-  awayteamname  String   @db.VarChar(255)
-  hometeamscore Int
-  awayteamscore Int
-  isfinished    Boolean
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  homeTeamName  String   @db.VarChar(255)
+  awayTeamName  String   @db.VarChar(255)
+  homeTeamScore Int      @default(0)
+  awayTeamScore Int      @default(0)
+  isFinished    Boolean  @default(false)
+
+  @@map("games")
 }
 
-model participantes {
-  id         Int      @id @default(autoincrement())
-  created_at DateTime @default(now()) @db.Date
-  updated_at DateTime @default(now()) @db.Date
-  name       String   @db.VarChar(255)
-  balance    Int
+model Participants {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime  @default(now()) @updatedAt
+  updatedAt DateTime @updatedAt
+  name      String   @db.VarChar(255)
+  balance   Int
+
+  @@map("participants")
 }

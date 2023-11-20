@@ -1,6 +1,5 @@
 import { gameFinished } from "@/errors/game-finished";
 import { gameNotExists } from "@/errors/game-not-exists";
-import { gameNotFinished } from "@/errors/game-not-finished";
 import { gameNotHaveBets } from "@/errors/game-not-have-bets";
 import { betRepository } from "@/repositories/bet-repository";
 import { gameRepository } from "@/repositories/game-repository"

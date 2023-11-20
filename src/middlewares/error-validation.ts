@@ -12,6 +12,7 @@ export default function errorMiddleware(error: ApplicationError | RequestError, 
     if (error.name === "GameFinished") return res.status(httpStatus.UNAUTHORIZED).send(error.message);
     if (error.name === "GameNotHaveBets") return res.status(httpStatus.NOT_FOUND).send(error.message);
     if (error.name === "InvalidBet") return res.status(httpStatus.UNAUTHORIZED).send(error.message);
+    if (error.name === "GameNotFinished") return res.status(httpStatus.UNAUTHORIZED).send(error.message);
 
     console.log(error.message);
     return res.status(httpStatus.INTERNAL_SERVER_ERROR).send(error.message);

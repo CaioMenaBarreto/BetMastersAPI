@@ -9,5 +9,6 @@ const gameRouter = Router();
 gameRouter.post('/games',schemaValidation(newGameSchema), gameController.postGame);
 gameRouter.post('/games/:id/finish', schemaValidation(finishGameSchema), gameController.finishGameById)
 gameRouter.get('/games', gameController.getGames);
+gameRouter.get('/games/:id', gameController.getGameById);
 
 export default gameRouter;

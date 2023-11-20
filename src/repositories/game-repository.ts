@@ -16,12 +16,12 @@ async function getGames(){
 }
 
 async function getGameById(gameId: number){
-    const games = await prisma.games.findFirst({
+    const game = await prisma.games.findFirst({
         where:{
             id: gameId
         }
     });
-    return games;
+    return game;
 } 
 
 async function updateGameById(gameId: number, homeTeamScore: number, awayTeamScore: number){

@@ -24,8 +24,16 @@ async function finishGameById(req: Request, res: Response) {
     res.status(httpStatus.OK).send(finishGame);
 } 
 
+async function getGameById(req: Request, res: Response) {
+    const { id } = req.params;
+    
+    const game = await gameService.getGameById(id);
+    res.status(httpStatus.OK).send(game);
+}
+
 export const gameController = {
     postGame,
     getGames,
-    finishGameById
+    finishGameById,
+    getGameById
 }

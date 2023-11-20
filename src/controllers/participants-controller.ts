@@ -15,7 +15,7 @@ async function getParticipants(req: Request, res: Response){
     const participants = await participantsService.getParticipants();
 
     res.status(httpStatus.OK).send(participants);
-}
+} 
 
 export const participantsController ={
     postParticipants,

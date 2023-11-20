@@ -8,7 +8,7 @@ async function postParticipants(name: string, balance: number) {
         }
     });
     return newParticipant;
-}
+} 
 
 async function getParticipants() {
     const participants = await prisma.participants.findMany();
@@ -33,6 +33,7 @@ async function updateParticipantBalance(participantId: number, newBalance: numbe
             balance: newBalance,
         },
     });
+    console.log(updatedParticipant);
     return updatedParticipant;
 }
 

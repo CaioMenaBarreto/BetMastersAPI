@@ -3,5 +3,5 @@ import Joi, { ObjectSchema } from "joi";
 
 export const newParticipantSchema: ObjectSchema<NewUser> = Joi.object({
     name: Joi.string().required(),
-    balance: Joi.string().required(),
+    balance: Joi.number().required(),
 });

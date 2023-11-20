@@ -8,7 +8,7 @@ async function postGame(homeTeamName: string, awayTeamName: string) {
         }
     })
     return newGame;
-}
+} 
 
 async function getGames(){
     const games = await prisma.games.findMany();
@@ -22,10 +22,25 @@ async function getGameById(gameId: number){
         }
     });
     return games;
+} 
+
+async function updateGameById(gameId: number, homeTeamScore: number, awayTeamScore: number){
+    const game = prisma.games.update({
+        data:{
+            homeTeamScore: homeTeamScore,
+            awayTeamScore: awayTeamScore,
+            isFinished: true,
+        },
+        where:{
+            id: gameId
+        }
+    })
+    return game;
 }
 
 export const gameRepository = {
     postGame,
     getGames,
-    getGameById
+    getGameById,
+    updateGameById
 }

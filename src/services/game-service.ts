@@ -1,6 +1,5 @@
 import { gameFinished } from "@/errors/game-finished";
 import { gameNotExists } from "@/errors/game-not-exists";
-import { gameNotHaveBets } from "@/errors/game-not-have-bets";
 import { betRepository } from "@/repositories/bet-repository";
 import { gameRepository } from "@/repositories/game-repository"
 import { verifyBet } from "@/utils/verify-bet";
@@ -12,9 +11,7 @@ async function postGame(homeTeamName: string, awayTeamName: string) {
 
 async function getGames() {
     const games = await gameRepository.getGames();
-    if (games.length === 0) {
-        return { message: "No have games yet!" };
-    }
+    if (games.length === 0) return { message: "No have games yet!" };
     return games;
 }
 
@@ -25,7 +22,6 @@ async function finishGame(homeTeamScore: number, awayTeamScore: number, gameId: 
     if (!game) throw gameNotExists();
 
     const bets = await betRepository.getBetsById(newGameId);
-    if (bets.length === 0) throw gameNotHaveBets();
 
     if (game.isFinished === true) throw gameFinished();
 

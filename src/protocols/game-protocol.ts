@@ -3,6 +3,11 @@ export type NewGame = {
 	awayTeamName: string;
 }
 
+export type FinishGame = {
+	homeTeamScore: number;
+	awayTeamScore: number;
+}
+
 export type Game = {
     id: number;
     createdAt: Date;

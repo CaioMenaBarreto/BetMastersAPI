@@ -15,9 +15,18 @@ export async function createFailParticipant() {
     }
 }
 
-export async function createParticipant(){
+export async function createParticipant() {
     return {
         name: faker.internet.userName(),
-        balance: faker.number.int({min: 1000, max: 10000000})
+        balance: faker.number.int({ min: 1000, max: 10000000 })
     }
+}
+
+export async function createParticipantInDB() {
+    return await prisma.participants.create({
+        data: {
+            name: faker.internet.userName(),
+            balance: faker.number.int({ min: 1000, max: 100000 })
+        }
+    })
 }

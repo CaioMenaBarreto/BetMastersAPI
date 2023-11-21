@@ -7,7 +7,7 @@ async function postGame(req: Request, res: Response) {
 
     const newGame = await gameService.postGame(homeTeamName, awayTeamName)
 
-    res.status(httpStatus.OK).send(newGame);
+    res.status(httpStatus.CREATED).send(newGame);
 }
 
 async function getGames(req: Request, res: Response) {

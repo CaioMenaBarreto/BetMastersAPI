@@ -27,11 +27,11 @@ export async function verifyBet(bets: Bets, game: Game) {
             await betRepository.updateBetById(bets[i].id, won);
             await participantsRepository.updateParticipantBalance(bets[i].participantId, newBalance)
         } else {
-            const won = {
+            const lost = {
                 amountWon: 0,
-                status: "WON"
+                status: "LOST"
             }
-            await betRepository.updateBetById(bets[i].id, won);
+            await betRepository.updateBetById(bets[i].id, lost);
         }
     }
 }

@@ -13,7 +13,7 @@ async function getGames() {
     const games = await gameRepository.getGames();
     if (games.length === 0) return [];
     return games;
-}
+} 
 
 async function finishGame(homeTeamScore: number, awayTeamScore: number, gameId: string) {
     const newGameId = Number(gameId);
@@ -38,7 +38,7 @@ async function getGameById(id: string) {
     const bets = await betRepository.getBetsById(gameId);
     if (!game) throw gameNotExists();
     if (bets.length > 0) {
-        const formattedGame = {
+        const formattedGame = { 
             id: game.id,
             createdAt: game.createdAt,
             updatedAt: game.updatedAt,

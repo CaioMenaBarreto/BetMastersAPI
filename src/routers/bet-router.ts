@@ -7,4 +7,4 @@ const betRouter = Router();
 
 betRouter.post('/bets', schemaValidation(newBetSchema), betController.postBet);
 
-export default betRouter;
+export default betRouter; 

@@ -10,7 +10,7 @@ async function postBet(bet: PostBet) {
             gameId: bet.gameId,
             participantId: bet.participantId
         }
-    });
+    }); 
     return newBet;
 }
 

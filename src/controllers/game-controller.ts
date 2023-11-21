@@ -22,7 +22,7 @@ async function finishGameById(req: Request, res: Response) {
     const finishGame = await gameService.finishGame(homeTeamScore, awayTeamScore, id);
 
     res.status(httpStatus.OK).send(finishGame);
-} 
+}  
 
 async function getGameById(req: Request, res: Response) {
     const { id } = req.params;

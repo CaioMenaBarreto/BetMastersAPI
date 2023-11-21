@@ -11,4 +11,4 @@ gameRouter.post('/games/:id/finish', schemaValidation(finishGameSchema), gameCon
 gameRouter.get('/games', gameController.getGames);
 gameRouter.get('/games/:id', gameController.getGameById);
 
-export default gameRouter;
+export default gameRouter; 

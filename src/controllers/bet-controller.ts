@@ -12,4 +12,4 @@ async function postBet(req: Request, res: Response){
 
 export const betController = {
     postBet
-}
+} 

@@ -9,14 +9,12 @@
     "migration:run": "prisma migrate deploy",
     "migration:generate": "npm run load-envs prisma migrate dev",
     "load-envs": "dotenv -e .env",
-    "seed": "prisma db seed",
     "dev": "cross-env NODE_ENV=development nodemon --watch 'src/' --exec 'ts-node -r tsconfig-paths/register ./src/server.ts' -e ts",
     "test": "npm run test:load-envs jest",
     "test:coverage": "npm run test:load-envs -- jest -- --coverage --runInBand",
     "test:migration:run": "npm run test:load-envs prisma migrate deploy",
     "test:migration:generate": "npm run test:load-envs prisma migrate dev",
-    "test:load-envs": "dotenv -e .env.test",
-    "test:seed": "npm run test:load-envs prisma db seed"
+    "test:load-envs": "dotenv -e .env.test"
   },
   "prisma": {
     "seed": "ts-node prisma/seed.ts"

@@ -16,8 +16,7 @@ Este projeto é uma API REST para atender a criação de participantes, jogos e 
 ```
 {
 	name: string;
-	balance: number; 
-    (representado em centavos, ou seja, R$ 10,00 -> 1000)
+	balance: number; (representado em centavos, ou seja, R$ 10,00 -> 1000)
 }
 ```
 Se a estrutura não for respeitada, um erro 422 é retornado.

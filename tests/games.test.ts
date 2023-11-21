@@ -7,9 +7,16 @@ import { createParticipantInDB } from "./factories/participant-factory";
 import { createBetInDB, findBets } from "./factories/bet-factory";
 import { faker } from "@faker-js/faker";
 
-beforeEach(async () => {
+beforeAll(async () => {
+    await prisma.bets.deleteMany();
     await prisma.games.deleteMany();
-})
+    await prisma.participants.deleteMany();
+});
+beforeEach(async () => {
+    await prisma.bets.deleteMany();
+    await prisma.games.deleteMany();
+    await prisma.participants.deleteMany();
+});
 
 const server = supertest(app);
 
@@ -51,7 +58,7 @@ describe('Get all games tests', () => {
     it('should return an empty array', async () => {
         const { status, body } = await server.get(`/games`);
         expect(status).toBe(200);
-        expect(body).toEqual({ message: "No have games yet!" });
+        expect(body).toEqual([]);
     });
 
     it('Should return all games', async () => {

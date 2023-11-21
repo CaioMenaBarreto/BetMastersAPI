@@ -30,3 +30,12 @@ export async function createParticipantInDB() {
         }
     })
 }
+
+export async function createParticipantInDBWithLessBalance() {
+    return await prisma.participants.create({
+        data: {
+            name: faker.internet.userName(),
+            balance: faker.number.int({ min: 1000, max: 1000 })
+        }
+    })
+}

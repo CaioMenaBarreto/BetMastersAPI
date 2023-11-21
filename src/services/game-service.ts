@@ -11,7 +11,7 @@ async function postGame(homeTeamName: string, awayTeamName: string) {
 
 async function getGames() {
     const games = await gameRepository.getGames();
-    if (games.length === 0) return { message: "No have games yet!" };
+    if (games.length === 0) return [];
     return games;
 }
 

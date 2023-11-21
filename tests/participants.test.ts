@@ -5,9 +5,18 @@ import { createWrongBalance, createParticipant, createFailParticipant } from "./
 import httpStatus from "http-status";
 
 const server = supertest(app);
-beforeEach(async () => {
+
+beforeAll(async () => {
+    await prisma.bets.deleteMany();
+    await prisma.games.deleteMany();
     await prisma.participants.deleteMany();
-})
+});
+beforeEach(async () => {
+    await prisma.bets.deleteMany();
+    await prisma.games.deleteMany();
+    await prisma.participants.deleteMany();
+});
+
 
 describe("Participant creation tests", () => {
     it("Should return status 401 on user creation with balance < $10", async () => {
@@ -49,6 +58,13 @@ describe("Participant creation tests", () => {
 });
 
 describe('Get all partipants tests', () => {
+    it('should return an empty array', async () => {
+        const { status, body } = await server.get(`/participants`);
+        expect(status).toBe(httpStatus.OK);
+
+        expect(body).toEqual({ message: "There are no participants" });
+    })
+
     it('Should return all participants', async () => {
         const participant1 = await createParticipant();
         const participant2 = await createParticipant();
@@ -59,30 +75,21 @@ describe('Get all partipants tests', () => {
         const { status, body } = await server.get(`/participants`);
         expect(status).toBe(httpStatus.OK);
         expect(body).toBeInstanceOf(Array);
-        expect(body).toEqual(
-            expect.arrayContaining([
-                expect.objectContaining({
-                    id: expect.any(Number),
-                    createdAt: expect.stringMatching(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}.\d{3}Z$/),
-                    updatedAt: expect.stringMatching(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}.\d{3}Z$/),
-                    name: participant1.name,
-                    balance: participant1.balance
-                }),
-                expect.objectContaining({
-                    id: expect.any(Number),
-                    createdAt: expect.stringMatching(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}.\d{3}Z$/),
-                    updatedAt: expect.stringMatching(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}.\d{3}Z$/),
-                    name: participant2.name,
-                    balance: participant2.balance
-                }),
-            ])
-        );
+        expect(body).toEqual([
+            {
+                id: expect.any(Number),
+                createdAt: expect.stringMatching(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}.\d{3}Z$/),
+                updatedAt: expect.stringMatching(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}.\d{3}Z$/),
+                name: participant1.name,
+                balance: participant1.balance
+            },
+            {
+                id: expect.any(Number),
+                createdAt: expect.stringMatching(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}.\d{3}Z$/),
+                updatedAt: expect.stringMatching(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}.\d{3}Z$/),
+                name: participant2.name,
+                balance: participant2.balance
+            },
+        ]);
     });
-
-    it('should return an empty array', async () => {
-        const { status, body } = await server.get(`/participants`);
-        expect(status).toBe(httpStatus.OK);
-
-        expect(body).toEqual({ message: "There are no participants" });
-    })
 });

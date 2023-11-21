@@ -4,8 +4,8 @@
   "description": "",
   "main": "dist/index.js",
   "scripts": {
-    "build": "tsc --project tsconfig.build.json && tsc-alias",
-    "start": "npm run migration:run && npm run seed && node dist/index.js",
+    "build": "tsc && tsc-alias",
+    "start": "npm run migration:run && node dist/index.js",
     "migration:run": "prisma migrate deploy",
     "migration:generate": "npm run load-envs prisma migrate dev",
     "load-envs": "dotenv -e .env",

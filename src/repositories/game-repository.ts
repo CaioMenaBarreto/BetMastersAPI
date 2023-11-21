@@ -26,13 +26,13 @@ async function getGameById(gameId: number){
 
 async function updateGameById(gameId: number, homeTeamScore: number, awayTeamScore: number){
     const game = prisma.games.update({
+        where:{
+            id: gameId
+        },
         data:{
             homeTeamScore: homeTeamScore,
             awayTeamScore: awayTeamScore,
             isFinished: true,
-        },
-        where:{
-            id: gameId
         }
     })
     return game;
